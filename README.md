@@ -24,4 +24,13 @@ the link for HSN is https://github.com/baiboat/HSNet
  
  
  you could comment that normalization also in the training set, e.g. if you use images without foreground pixels.
- 
+
+
+Note on HSNet and PVT Networks Integration
+We have integrated the code provided by the authors for HSNet and PVT networks into our software. However, we have made two significant modifications to the original implementation:
+
+Normalization Adjustment: We have removed the normalization based on the maximum and minimum values. This normalization method was found to be effective only when there is at least one pixel to be segmented in the image. By removing it, we aim to improve the robustness of the segmentation across varying conditions.
+
+Epoch Selection Criterion (check carefully the code you are using): The original implementation selected the optimal number of epochs based on the validation set, which is part of the test set. To prevent data leakage and ensure a fair evaluation, we have revised this approach. The optimal number of epochs is now determined without using the test set, adhering to a more stringent and unbiased validation process.
+
+These changes were made to enhance the reliability and generalizability of our segmentation results. We believe these adjustments provide a more robust framework for practical applications.
